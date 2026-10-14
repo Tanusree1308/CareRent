@@ -1,0 +1,15 @@
+CARENT BACKEND – SIMPLE DEMO TEST
+
+1. Start server:
+   npm install
+   npm start
+
+2. Browser test:
+   http://localhost:3000
+   Expected: {"app":"CareRent Backend","status":"running",...}
+
+3. Health test:
+   http://localhost:3000/api/health
+   Expected: {"status":"ok","service":"CareRent API"}
+
+The API is designed to connect to the CareRent frontend.

@@ -1,0 +1,7 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+export default function Login() {
+  const [email,setEmail]=useState(""); const [password,setPassword]=useState(""); const [error,setError]=useState(""); const navigate=useNavigate();
+  const submit=e=>{e.preventDefault(); const u=JSON.parse(localStorage.getItem("careRentUser")||"null"); if(u && u.email.toLowerCase()===email.toLowerCase() && u.password===password){localStorage.setItem("careRentLoggedIn","true"); navigate(u.role==="owner"?"/owner":"/home")} else setError("Invalid email or password. Register first if you are a new user.");};
+  return <div className="auth-page"><div className="auth-card"><div className="mini-logo">Care<span>Rent</span></div><h2>Welcome back</h2><p>Login to continue your care journey.</p><form onSubmit={submit}><label>Email<input type="email" value={email} onChange={e=>setEmail(e.target.value)} required placeholder="you@example.com"/></label><label>Password<input type="password" value={password} onChange={e=>setPassword(e.target.value)} required placeholder="••••••••"/></label>{error&&<div className="error">{error}</div>}<button className="primary-btn">Login</button></form><p className="switch">New to CareRent? <button className="inline-btn" onClick={()=>navigate("/register")}>Create account</button></p></div></div>;
+}
